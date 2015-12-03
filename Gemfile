@@ -7,6 +7,8 @@ gem 'jquery-turbolinks'
 gem "cocoon"
 # rails console
 gem 'pry-rails'
+# Authenticates users
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
