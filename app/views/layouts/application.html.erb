@@ -13,11 +13,34 @@
     		</div>
     		<ul class="nav navbar-nav">
 	      		<li><%= link_to 'Add event', new_poll_path %></li>
+				<% if user_signed_in? %>
+				<li>
+					<% if user_signed_in? %>
+						<% if current_user.profile %>
+							<% if current_page? profile_path(current_user.profile) %>
+								<%= link_to "Edit My Profile", edit_profile_path(current_user.profile) %>
+							<% else %>
+								<%= link_to "View My Profile", profile_path(current_user.profile) %>
+							<% end %>
+						<% else %>
+							<%= link_to "Create Profile", new_profile_path %>
+						<% end %>
+					<% end %>
+				</li>
+		<% end %>
+
+		<% if user_signed_in? %>
+			<li><%= link_to 'Edit user', edit_user_registration_path, :class => 'navbar-link' %></li>
+			<li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
+		<% else %>
+			<li><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link' %></li>
+			<li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+		<% end %>
 	    	</ul>
   		</div>
 	</div>
 
-	<div class = "collapse navbar-collapse" id = "bs-example-navbar-collapse-1">
+	<!-- <div class = "collapse navbar-collapse" id = "bs-example-navbar-collapse-1">
 		<ul class = "nav navbar-nav navbar-right">
 		<% if user_signed_in? %>
 			<li>
@@ -43,7 +66,7 @@
 			<li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
 		<% end %>
 		</ul>
-	</div>
+	</div> -->
 
 	<div class="container">
   		<% flash.each do |key, value| %>
@@ -61,7 +84,6 @@
 </head>
 <body>
 
-<%= yield %>
 
 </body>
 </html>
