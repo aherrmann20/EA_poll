@@ -4,6 +4,7 @@
   <div class="form-group">
     <%= f.label :topic %>
     <%= f.text_area :topic, rows: 3, required: true, class: 'form-control' %>
+
   </div>
 
   <div class="panel panel-default">
@@ -18,6 +19,13 @@
       </div>
     </div>
   </div>
+
+
+
+	<%= f.label "Open?" %> <br />
+    <%= f.check_box :open %> <br />
+
+  <br>
 
   <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
 <% end %>

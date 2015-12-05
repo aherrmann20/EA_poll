@@ -33,8 +33,9 @@ ActiveRecord::Schema.define(version: 20151205213418) do
 
   create_table "polls", force: :cascade do |t|
     t.text     "topic"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "open",       default: true
   end
 
   create_table "profiles", force: :cascade do |t|

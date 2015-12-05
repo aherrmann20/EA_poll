@@ -2,22 +2,28 @@
 
 <% if user_signed_in? %>
 	<% @polls.each do |poll| %>
+		
 		<div class = "well">
 			<h2><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h2>
 
-			<p>
-				<% if current_user %>
-					<%= link_to 'Participate!', poll_path(poll), class: 'btn btn-primary btn-lg block' %>			
-				<% end %>
-			</p>
+			<% if poll.open? || current_user.admin? %>
+				<p>
+					<% if current_user %>
+						<%= link_to 'Participate!', poll_path(poll), class: 'btn btn-primary btn-lg block' %>			
+					<% end %>
+				</p>
 
-			
-			<div class = "btn-group">
-				<%= link_to "Edit", edit_poll_path(poll), class: "btn btn-default" %>
-				<%= link_to "Delete", poll_path(poll), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure?"} %>
-			</div>
-			
+				<% if current_user.admin? %>
+					<div class = "btn-group">
+						<%= link_to "Edit", edit_poll_path(poll), class: "btn btn-default" %>
+						<%= link_to "Delete", poll_path(poll), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure?"} %>
+					</div>
+				<% end %>
+			<% else %>
+				<p>This event is now closed </p>
+			<% end %>
 		</div>
+
 	<% end %>
 
 <% else %>
