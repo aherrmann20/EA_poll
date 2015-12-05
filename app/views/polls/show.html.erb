@@ -1,0 +1,7 @@
+<% content_for(:page_header) {"Share your opinion"} %>
+
+<h2><%= @poll.topic %></h2>
+
+<%= render 'voting_form' %>
+
+<%= link_to 'Back', root_path %>
