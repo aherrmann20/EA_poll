@@ -12,7 +12,9 @@
       			<%= link_to 'Effective Altruism Game', root_path, class: 'navbar-brand' %>
     		</div>
     		<ul class="nav navbar-nav">
-	      		<li><%= link_to 'Add event', new_poll_path %></li>
+    			<% if current_user.try(:admin?) %>
+	      			<li><%= link_to 'Add event', new_poll_path %></li>
+	      		<% end %>
 				<% if user_signed_in? %>
 				<li>
 					<% if user_signed_in? %>
