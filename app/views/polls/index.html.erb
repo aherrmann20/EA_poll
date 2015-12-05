@@ -21,6 +21,7 @@
 				<% end %>
 			<% else %>
 				<p>This event is now closed </p>
+				<%= link_to 'View Results', poll_path(poll), class: 'btn btn-primary btn-lg block' %>
 			<% end %>
 		</div>
 

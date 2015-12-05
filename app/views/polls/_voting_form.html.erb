@@ -3,9 +3,13 @@
 
 	<%= render partial: 'polls/vote_option', collection: @poll.vote_options, as: :option %>
 
-	<% if current_user.voted_for?(@poll) %>
+	<% if current_user.voted_for?(@poll) && @poll.open? %>
 		<p>You have already voted!</p>
 	<% else %>
-		<%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
+		<% if @poll.open? %>
+			<%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
+		<% else %>
+			<p> This poll is now closed </p>
+		<% end %>
 	<% end %>
 <% end %>
