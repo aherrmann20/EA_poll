@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20151205220858) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "correct",    default: false
+    t.integer  "votes_count", default: 0, null: false
   end
 
   add_index "vote_options", ["poll_id"], name: "index_vote_options_on_poll_id"
@@ -89,5 +90,3 @@ ActiveRecord::Schema.define(version: 20151205220858) do
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
   add_index "votes", ["vote_option_id", "user_id"], name: "index_votes_on_vote_option_id_and_user_id", unique: true
   add_index "votes", ["vote_option_id"], name: "index_votes_on_vote_option_id"
-
-end
