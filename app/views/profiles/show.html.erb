@@ -12,6 +12,16 @@
 	<%= @profile.description %>
 </p>
 
+<h3>Participation in polls</h3>
+
+<% current_user.vote_options.each do |option| %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= link_to option.poll.topic, poll_path(option.poll) %></div>
+    <div class="panel-body">
+      <%= option.title %>
+    </div>
+  </div>
+<% end %>
 
 <br>
 <br>
