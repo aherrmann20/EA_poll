@@ -40,9 +40,11 @@
 	<%= @profile.points %>
 </p>
 
-<h3>Participation in polls</h3>
 
-<% @profiles.user.vote_options.each do |option| %>
+
+<h3>Participation in polls</h3>
+<% current_user.vote_options.each do |option| %>
+
   <div class="panel panel-default">
     <div class="panel-heading"><%= link_to option.poll.topic, poll_path(option.poll) %></div>
     <div class="panel-body">
@@ -51,6 +53,16 @@
   </div>
 <% end %>
 
+<br>
+<% if user_signed_in? %>
+    <% if current_user.profile %>
+        <% if current_page? profile_path(current_user.profile) %>
+			<%= link_to 'Edit my profile', edit_profile_path(current_user.profile) %>
+		<% end %>
+	<% end %>
+<% end %>
+<br>
+<br>
 <br>
 <br>
 
