@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :polls
   resources :profiles
   resources :votes, only: [:create]
-  resources :users
+  resources :users, only: [:show]
   root 'polls#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
