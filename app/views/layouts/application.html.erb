@@ -2,19 +2,24 @@
 <html>
 <head>
   <title>EAPoll</title>
+<!-- Links in stylesheets and javascript to use in navbar -->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
+<!-- Sets up dynamic navbar with bootstrap -->
   	<div class="navbar navbar-inverse">
   		<div class="container">
     		<div class="navbar-header">
       			<%= link_to 'Effective Altruism Game', root_path, class: 'navbar-brand' %>
     		</div>
     		<ul class="nav navbar-nav">
+    			<!-- Allows only admins to see add event link -->
     			<% if current_user.try(:admin?) %>
 	      			<li><%= link_to 'Add event', new_poll_path %></li>
 	      		<% end %>
+
+	      		<!-- Allows only authenticated, signed-in users to view profiles and edit/create their own. -->
 				<% if user_signed_in? %>
 				<li>
 					<% if user_signed_in? %>
@@ -31,10 +36,15 @@
 				</li>
 		<% end %>
 
+		<!-- Links to profile index  -->
 		<li><%= link_to "See who's playing!", profiles_path, :class => 'navbar-link' %></li>
+
+		<!-- Only signed in, authenticated users can edit their user info. If a user is logged in, the logout link
+		will also be displayed. -->
 		<% if user_signed_in? %>
 			<li><%= link_to 'Edit user', edit_user_registration_path, :class => 'navbar-link' %></li>
 			<li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
+		<!-- If user is not logged in, one can sign up or log in -->
 		<% else %>
 			<li><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link' %></li>
 			<li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
@@ -44,35 +54,7 @@
   		</div>
 	</div>
 
-
-	<!-- <div class = "collapse navbar-collapse" id = "bs-example-navbar-collapse-1">
-		<ul class = "nav navbar-nav navbar-right">
-		<% if user_signed_in? %>
-			<li>
-				<% if user_signed_in? %>
-					<% if current_user.profile %>
-						<% if current_page? profile_path(current_user.profile) %>
-							<%= link_to "Edit My Profile", edit_profile_path(current_user.profile) %>
-						<% else %>
-							<%= link_to "View My Profile", profile_path(current_user.profile) %>
-						<% end %>
-					<% else %>
-						<%= link_to "Create Profile", new_profile_path %>
-					<% end %>
-				<% end %>
-			</li>
-		<% end %>
-
-		<% if user_signed_in? %>
-			<li><%= link_to 'Edit user', edit_user_registration_path, :class => 'navbar-link' %></li>
-			<li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
-		<% else %>
-			<li><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link' %></li>
-			<li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-		<% end %>
-		</ul>
-	</div> -->
-
+	<!-- Bootstrap flash message formatting -->
 	<div class="container">
   		<% flash.each do |key, value| %>
 	    <div class="alert alert-<%= key %>">

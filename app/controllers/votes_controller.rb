@@ -1,4 +1,11 @@
 class VotesController < ApplicationController
+
+  # each vote is created and is linked to current_user, the poll, and the specific vote_option selected by the user.
+  # The poll on which is voted is found by the id, as is the option. A measure is in place to ensure that if a user has 
+  # already cast a vote on the event, they may not cast another. If they attempt to (which can happen before the page
+  # is refreshed and the vote button disappears on the view), a JS alert will pop up
+
+  # This method, along with many others, is from the tutorial found at http://www.sitepoint.com/polling-users-rails/
   def create
     if current_user && params[:poll] && params[:poll][:id] && params[:vote_option] && params[:vote_option][:id]
       @poll = Poll.find_by_id(params[:poll][:id])

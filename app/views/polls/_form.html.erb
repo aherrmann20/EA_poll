@@ -1,12 +1,18 @@
+<!-- Form partial to be rendered in other views when necessary -->
 <%= form_for @poll do |f| %>
+  <!-- Renders error form -->
   <%= render 'shared/errors', object: @poll %>
 
+  <!-- Bootstrap and form_for syntax to set up label and input for topic of poll -->
   <div class="form-group">
     <%= f.label :topic %>
     <%= f.text_area :topic, rows: 3, required: true, class: 'form-control' %>
 
   </div>
 
+  <!-- Bootstrap to set up vote_options of poll. vote_option_fields partial is rendered for each option, so that
+  options do not need to be hard-coded into the form; the partial can just be called whenever a new association 
+  (vote_option) is added. This can be done by the link_to_add_association at the bottom. -->
   <div class="panel panel-default">
     <div class="panel-heading">Options</div>
     <div class="panel-body">
@@ -20,12 +26,12 @@
     </div>
   </div>
 
-
-
+  	<!-- Checkbox to toggle "open" boolean -->
 	<%= f.label "Open?" %> <br />
     <%= f.check_box :open %> <br />
 
   <br>
 
+  <!-- Submission button, labeled create -->
   <%= f.submit 'Create', class: 'btn btn-primary btn-lg' %>
 <% end %>

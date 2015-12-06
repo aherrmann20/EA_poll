@@ -1,4 +1,5 @@
 module PollsHelper
+# classes from bootstrap and tutorial from sitepoint, displays numbers of votes for each option in a poll
   def visualize_votes_for(option)
     content_tag :div, class: 'progress' do
       content_tag :div, class: 'progress-bar',
