@@ -5,8 +5,13 @@
 	</strong>
 <h1>
 <h2>
+	<strong>Age:</strong>
 	<%= @profile.age.to_s %>
 </h2>
+
+<% if @profile.photo? %>
+		<br><img id = "profile" src="<%= @profile.photo %>" width="400px" ><br>
+<% end %>
 
 <p>
 	<%= @profile.description %>
@@ -31,7 +36,7 @@
 
 
 <p>
-	Points:
+	<strong>Points:</strong>
 	<%= @profile.points %>
 </p>
 

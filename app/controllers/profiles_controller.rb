@@ -3,6 +3,10 @@ class ProfilesController < ApplicationController
 		@profile = Profile.new
 	end
 
+	def index
+		@profiles = Profile.all
+	end
+
 	def create
 		@profile = Profile.new(profile_params)
 		@profile.user = current_user
@@ -40,7 +44,7 @@ class ProfilesController < ApplicationController
 
 	private
 	def profile_params
-		params.require(:profile).permit(:name, :surname, :age, :description, :user_id)
+		params.require(:profile).permit(:name, :surname, :age, :description, :user_id, :photo)
 	end
 
 end

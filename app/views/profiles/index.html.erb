@@ -3,7 +3,7 @@
 <ul>
 	<% @profiles.each do |profile| %>
 		<li>
-			<strong><%= link_to profile.name, profie_path(profile.id) %></strong>
+			<strong><%= link_to profile.name + ' ' + profile.surname, profile_path(profile.id) %></strong>
 		</li>
 	<% end %>
 </ul>
