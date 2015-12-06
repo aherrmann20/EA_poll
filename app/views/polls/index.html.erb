@@ -1,11 +1,14 @@
+<!-- Top header of page -->
 <% content_for(:page_header) {"Predict now!"} %>
 
+<!-- Shows all polls only if user signed in. For each poll, topic is displayed as well as the number of users who have already voted. -->
 <% if user_signed_in? %>
 	<% @polls.each do |poll| %>
 		
 		<div class = "well">
 			<h2><%= poll.topic %> <small>(voted: <%= poll.votes_summary %>)</small></h2>
 
+			<!-- Unless you are a user, you can only see a link to participate in a poll if it is open. -->
 			<% if poll.open? || current_user.admin? %>
 				<p>
 					<% if current_user %>
@@ -13,12 +16,15 @@
 					<% end %>
 				</p>
 
+				<!-- You can only Edit and Delete polls if you are an admin. -->
 				<% if current_user.admin? %>
 					<div class = "btn-group">
 						<%= link_to "Edit", edit_poll_path(poll), class: "btn btn-default" %>
 						<%= link_to "Delete", poll_path(poll), method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure?"} %>
 					</div>
 				<% end %>
+
+			<!-- If you are not an admin and the poll is closed, you may only view results -->
 			<% else %>
 				<p>This event is now closed </p>
 				<%= link_to 'View Results', poll_path(poll), class: 'btn btn-primary btn-lg block' %>
@@ -27,6 +33,7 @@
 
 	<% end %>
 
+<!-- If you are not logged in, we encourage you to do so. -->
 <% else %>
 	Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to view events.
 <% end %>

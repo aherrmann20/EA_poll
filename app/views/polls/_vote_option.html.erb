@@ -1,5 +1,5 @@
 <!-- Ensures that user has not voted for and that the poll is still open before a user can vote, then shows radio
-buttons next to each vote_option -->
+buttons next to each vote_option. Statistics for the event will only be shown after user has cast vote. -->
 <div class="form-group">
   <%= content_tag(:label) do %>
     <% unless current_user.voted_for?(@poll) || !@poll.open? %>

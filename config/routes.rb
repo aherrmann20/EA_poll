@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  # Routes for CRUDing => every resource gets routes
   devise_for :users
   resources :users
   resources :polls

@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# Seeds users, profiles, and polls to avoid the pain of having to recreate them after each re-seeding and database creation.
+# Also helpful for when we deploy to Heroku.
+
 puts "Creating admin..."
 
 admin = User.create! email: "admin@example.com", password: "password", password_confirmation: "password", admin: true

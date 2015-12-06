@@ -1,10 +1,10 @@
+<!-- Creates basic form for users to cast vote, which renders the vote_option partial in this same folder. -->
 <%= form_tag votes_path, method: :post, remote: true, id: 'voting_form' do %>
 	<%= hidden_field_tag 'poll[id]', @poll.id %>
 
 	<%= render partial: 'polls/vote_option', collection: @poll.vote_options, as: :option %>
 
-<!-- 	<p><b>Total votes: <%= @poll.votes_summary %></b></p> -->
-
+	<!-- Ensures that user can only cast vote if they have not voted on this poll yet and the poll is still open. Page informs user of errors if user is unable to vote. -->
 	<% if current_user.voted_for?(@poll) %>
 		<p>You have already voted!</p>
 	<% else %>

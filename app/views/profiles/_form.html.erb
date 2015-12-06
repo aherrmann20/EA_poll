@@ -1,3 +1,4 @@
+<!-- Uses ruby formbuilder to create form for profile. One user has one profile so as to not mess with devise's user set-up. This first block uses the pluralize method to display any errors encountered while creating profiles. -->
 <%= form_for @profile do |f| %>
 	<% if @profile.errors.any? %>
 		<div id="error_explanation">	
@@ -12,11 +13,12 @@
 		</div>
 	<% end %>
 
+<!-- Other labels and fields for attributes of profiles -->
   <p>
     <%= f.label 'Link to your profile picture' %><br>
     <%= f.text_field  :photo %>
   </p>
-  
+
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -37,6 +39,7 @@
     <%= f.text_area :description %>
   </p>
  
+ <!-- Submit button for form -->
   <p>
     <%= f.submit %>
   </p>

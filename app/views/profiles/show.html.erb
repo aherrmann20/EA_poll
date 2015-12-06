@@ -1,3 +1,4 @@
+<!-- Profile Display. Displays name and surname first, then age, then profile picture as an image based on URL provided by user, the description. -->
 <h1>
 	<strong>
 		<%= @profile.name %>
@@ -16,10 +17,13 @@
 <p>
 	<%= @profile.description %>
 </p>
+
+<!-- Initializes points and variables used to calculate points (not technically necessary in ruby, but let's keep things clean.) -->
 <% @profile.points = 0 %>
 <% total_votes = 0 %>
 <% option_votes = 0 %>
 
+<!-- Accesses all vote_options created by user, and searches for only the ones that are marked correct by an admin. The total votes cast by all users on these specific polls is stored in total_votes -->
 <% @profile.user.vote_options.each do |option| %>
 	<% if option.correct? %>
 		<% option.poll.vote_options.each do |p_option| %>
@@ -27,22 +31,25 @@
 		<% end %>
 	<% end %>
 
+<!-- Option_votes is the number of votes by all users on the correct option selected by the user in question -->
 	<% option_votes = option.votes.count %>
+	<!-- Assuming that option_votes is not 0 (to avoid dividing by zero), points are calculated based on this algorithm, which can then be displayed in the profile. -->
 	<% if option_votes != 0 %>
 		<% @profile.points = @profile.points + 10 * total_votes/option_votes %>
 
 	<% end %>
 <% end %>
 
-
+<!-- Displays profile points -->
 <p>
 	<strong>Points:</strong>
 	<%= @profile.points %>
 </p>
 
 
-
+<!-- Displays past events on which the user has voted -->
 <h3>Participation in polls</h3>
+<!-- Iterates through every vote_option cast by user, linking to each and displaying title. -->
 <% @profile.user.vote_options.each do |option| %>
 
   <div class="panel panel-default">
@@ -53,6 +60,7 @@
   </div>
 <% end %>
 
+<!-- Allows user to edit profile, if sighed in and on own profile. -->
 <br>
 <% if user_signed_in? %>
     <% if current_user.profile %>
