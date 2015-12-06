@@ -3,5 +3,11 @@
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control', required: true %>
   </div>
+
+  <%= f.label "Correct?" %> <br />
+  <%= f.check_box :correct %> <br />
   <%= link_to_remove_association "remove option", f %>
+  
 </div>
+<br>
+<br>

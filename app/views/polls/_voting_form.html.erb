@@ -3,9 +3,7 @@
 
 	<%= render partial: 'polls/vote_option', collection: @poll.vote_options, as: :option %>
 
-	<p><b>Total votes: <%= @poll.votes_summary %></b></p>
-
-	<% if current_user.voted_for?(@poll) && @poll.open? %>	
+<!-- 	<p><b>Total votes: <%= @poll.votes_summary %></b></p> -->
 
 	<% if current_user.voted_for?(@poll) %>
 		<p>You have already voted!</p>

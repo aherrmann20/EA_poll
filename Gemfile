@@ -15,9 +15,6 @@ gem 'coffee-script-source', '1.8.0'
 #fixed timesource info error
 gem 'tzinfo-data'
 
-#counter_culture: adding a counter cache
-gem 'counter_culture', '~> 0.1.23'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record

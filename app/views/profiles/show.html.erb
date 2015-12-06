@@ -12,6 +12,30 @@
 	<%= @profile.description %>
 </p>
 
+<% @profile.points = 0 %>
+<% total_votes = 0 %>
+<% option_votes = 0 %>
+
+<% @profile.user.vote_options.each do |option| %>
+	<% if option.correct? %>
+		<% option.poll.vote_options.each do |p_option| %>
+			<% total_votes = total_votes + p_option.votes.count %>
+		<% end %>
+	<% end %>
+
+	<% option_votes = option.votes.count %>
+	<% if option_votes != 0 %>
+		<% @profile.points = @profile.points + 10 * total_votes/option_votes %>
+
+	<% end %>
+<% end %>
+
+
+<p>
+	Points:
+	<%= @profile.points %>
+</p>
+
 
 <br>
 <br>
