@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205213418) do
+ActiveRecord::Schema.define(version: 20151205220858) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -72,8 +72,9 @@ ActiveRecord::Schema.define(version: 20151205213418) do
   create_table "vote_options", force: :cascade do |t|
     t.string   "title"
     t.integer  "poll_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "correct",    default: false
     t.integer  "votes_count", default: 0, null: false
   end
 
@@ -89,5 +90,3 @@ ActiveRecord::Schema.define(version: 20151205213418) do
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
   add_index "votes", ["vote_option_id", "user_id"], name: "index_votes_on_vote_option_id_and_user_id", unique: true
   add_index "votes", ["vote_option_id"], name: "index_votes_on_vote_option_id"
-
-end

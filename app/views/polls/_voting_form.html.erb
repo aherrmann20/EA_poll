@@ -5,9 +5,15 @@
 
 	<p><b>Total votes: <%= @poll.votes_summary %></b></p>
 
+	<% if current_user.voted_for?(@poll) && @poll.open? %>	
+
 	<% if current_user.voted_for?(@poll) %>
 		<p>You have already voted!</p>
 	<% else %>
-		<%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
+		<% if @poll.open? %>
+			<%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
+		<% else %>
+			<p> This poll is now closed </p>
+		<% end %>
 	<% end %>
 <% end %>
