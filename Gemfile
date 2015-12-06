@@ -14,6 +14,8 @@ gem 'coffee-script-source', '1.8.0'
 
 #fixed timesource info error
 gem 'tzinfo-data'
+#allow facebook authentication
+gem 'omniauth-facebook'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
